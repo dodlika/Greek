@@ -1,11 +1,10 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "composer install && touch .env && npm install && npm install sass --save-dev && npm run build"
+    "buildCommand": "composer install && touch .env && touch database/database.sqlite && npm install && npm install sass --save-dev && npm run build"
   },
   "deploy": {
-    "startCommand": "php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT",
-    "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 5
+    "startCommand": "php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT",
+    "restartPolicyType": "ON_FAILURE"
   }
 }
