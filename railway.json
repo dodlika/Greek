@@ -1,10 +1,10 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "composer install && touch database/database.sqlite && chmod 777 database/database.sqlite && chmod -R 777 storage && npm install && npm install sass --save-dev && npm run build"
+    "buildCommand": "composer install && chmod -R 777 storage && npm install && npm install sass --save-dev && npm run build"
   },
   "deploy": {
-    "startCommand": "php artisan config:clear && PHP_CLI_SERVER_WORKERS=1 php -d display_errors=1 -d error_reporting=E_ALL artisan serve --host=0.0.0.0 --port=$PORT",
+    "startCommand": "sleep 60 && php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT",
     "restartPolicyType": "ON_FAILURE"
   }
 }
