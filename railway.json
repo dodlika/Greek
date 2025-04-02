@@ -1,7 +1,7 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "composer install && php artisan key:generate && npm install && npm run build"
+    "buildCommand": "composer install && php artisan key:generate && npm install && npm install sass --save-dev && npm run build"
   },
   "deploy": {
     "startCommand": "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
