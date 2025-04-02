@@ -1,9 +1,11 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "composer install && php artisan key:generate && npm install && npm install sass --save-dev && npm run build"
+    "buildCommand": "composer install && cp .env.example .env && php artisan key:generate && npm install && npm install sass --save-dev && npm run build"
   },
   "deploy": {
-    "startCommand": "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+    "startCommand": "sleep 15 && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
   }
 }
